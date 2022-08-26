@@ -44,9 +44,10 @@ class PeopleViewController: UIViewController {
     func getPeople() {
         
         NetworkManager.shared.getData(url: "\(Constants.baseURL)/people") { (result: Result<[Person], NetworkError>) in
-            
             switch result {
             case .success(let page):
+                
+                
                 self.peopleList.append(contentsOf: page)
                 DispatchQueue.main.async {
                     self.peopleTableView.reloadData()

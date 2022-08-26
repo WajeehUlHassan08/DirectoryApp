@@ -16,7 +16,12 @@ enum APIError: Error {
 }
 
 class NetworkManager {
+    
     static let shared = NetworkManager()
+    
+}
+
+extension NetworkManager: NetworkManagerProtocol {
     
     func getData<T>(url: String, completion: @escaping (Result<T, NetworkError>) -> Void) where T: Codable {
         guard let url = URL(string: url) else { return }
@@ -59,7 +64,5 @@ class NetworkManager {
         
         task.resume()
         
-        
     }
-    
 }
